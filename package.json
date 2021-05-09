@@ -1,0 +1,29 @@
+{
+  "name": "spform-field-wrapper",
+  "version": "0.0.1",
+  "description": "SPFormFieldWrapper",
+  "main": "dist/index.js",
+  "author": {
+    "name": "Andrey Nesterov"
+  },
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.7.1",
+    "jasmine": "^3.7.0",
+    "jasmine-spec-reporter": "^7.0.0",
+    "jasmine-ts": "^0.3.3",
+    "ts-node": "^9.1.1",
+    "typescript": "^3.9.9"
+  },
+  "dependencies": {
+    "@types/sharepoint": "^2016.1.9"
+  }
+}
