@@ -48,6 +48,11 @@ export class FormFieldWrappersCache {
         return fieldWrapper;
     }
 
+    public static resetCache() {
+        this.__fieldsToWrappersAndContextesCache__ = null;
+        FieldsContextesCache.resetCache();
+    }
+
     private static initialize(): void {
         this.__fieldsToWrappersAndContextesCache__ = this._getDataForCache();
     }

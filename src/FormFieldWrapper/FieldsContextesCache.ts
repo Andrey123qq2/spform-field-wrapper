@@ -21,6 +21,10 @@ export class FieldsContextesCache {
         return this._fieldsToContextesCache;
     }
 
+    public static resetCache() {
+        this.__fieldsToContextesCache__ = null;
+    }
+
     private static initialize(): void {
         this.__fieldsToContextesCache__ = this._getFieldsContextesMap();
     }
