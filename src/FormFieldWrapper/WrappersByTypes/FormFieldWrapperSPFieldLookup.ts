@@ -11,14 +11,14 @@ export class FormFieldWrapperSPFieldLookup extends FormFieldWrapper {
 		var selectOptions = this.fieldElement.querySelectorAll("select[title] > option");
 		let value = Array.prototype.slice.call(selectOptions)
 			.filter((o) => o.value == o.parentNode.value)[0]
-			.innerText;
+			.textContent;
 		return value;
 	}
 
 	public set value(value) {
 		let lookupOptions = this.fieldElement.querySelectorAll("[title] option");
 		Array.prototype.slice.call(lookupOptions)
-			.filter(o => o.innerText == value)
+			.filter(o => o.textContent == value)
 			.forEach(o => o.setAttribute('selected', true));
 	}
 }

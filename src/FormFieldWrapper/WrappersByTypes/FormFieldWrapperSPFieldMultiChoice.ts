@@ -12,7 +12,7 @@ export class FormFieldWrapperSPFieldMultiChoice extends FormFieldWrapper {
 		let inputOptions = this.fieldElement.querySelectorAll("input[type='checkbox']");
 		optionsValues = Array.prototype.slice.call(inputOptions)
 			.filter(o => o.checked)
-			.map(o => o.nextElementSibling.innerText);
+			.map(o => o.nextElementSibling.textContent);
 		return optionsValues;
 	}
 

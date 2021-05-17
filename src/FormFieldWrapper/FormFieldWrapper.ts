@@ -21,7 +21,7 @@ export class FormFieldWrapper {
 	}
 
 	public getValueDispForm(): string {
-		return (this.fieldElement.parentNode as any).innerText.trim();
+		return (this.fieldElement.parentNode as any).textContent.trim();
 	}
 
 	public set value(value) {

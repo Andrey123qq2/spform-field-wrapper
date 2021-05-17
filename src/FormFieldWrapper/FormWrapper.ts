@@ -55,7 +55,7 @@ export class FormWrapper {
 		<td valign=\"top\" width=\"350px\" class=\"ms-formbody\">" + fieldContent + "</td>";
         let formHeaders = document.querySelectorAll(".ms-h3.ms-standardheader");
         Array.prototype.slice.call(formHeaders).forEach(h => {
-            if (h.innerText.trim() == fielTitleAfter) {
+            if (h.textContent.trim() == fielTitleAfter) {
                 let fieldTableRow = h.closest("tr");
                 let newTableRow = document.createElement("tr");
                 newTableRow.innerHTML = tableRowHtml;
