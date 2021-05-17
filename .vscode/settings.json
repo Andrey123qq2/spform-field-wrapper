@@ -1,0 +1,4 @@
+{
+    "jasmineExplorer.config": "jasmine.json",
+    "jest.debugMode": true
+}

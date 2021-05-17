@@ -1,15 +1,74 @@
+// {
+//   "compilerOptions": {
+//       "target": "es5",
+//       "outDir": "build",
+//       "module": "commonjs",
+//       "strict": true,
+//       "noImplicitReturns": true,
+//       "noFallthroughCasesInSwitch": true,
+//       "sourceMap": true,
+//       "declaration": false,
+//       "moduleResolution": "node",
+//       "suppressImplicitAnyIndexErrors": true,
+//       "removeComments": true,
+//       "allowJs": true,
+//       "esModuleInterop": true,
+//       "allowSyntheticDefaultImports": true,
+//       "forceConsistentCasingInFileNames": true,
+//       "noEmitOnError": true,
+//       "typeRoots": [
+//           "./node_modules/@types",
+//           "./types"
+//       ],
+//       "lib": [
+//           "es5",
+//           "es6",
+//           "dom",
+//           "scripthost"
+//       ],
+//       "traceResolution": false,
+//       "listEmittedFiles": false,
+//       "listFiles": false,
+//       "pretty": true,
+//   },
+//   "exclude": [
+//       "node_modules/**/*.*",
+//       "build/**/*.*"
+//   ],
+//   "include": [
+//       "src/**/*.ts",
+//       "test/**/*.test.ts",
+//       "demo/**/*.ts"
+//   ],
+// }
+// {
+//   "compilerOptions": {
+//     "declaration": true,
+//     "target": "es5",
+//     "module": "commonjs",
+//     "sourceMap": true,
+//     "esModuleInterop": true,
+//     "outDir": "dist",
+//     "lib": ["es2015", "dom"],
+//     "rootDir": "src"
+//   },
+//   "include": ["src"],
+//   "exclude": ["node_modules", "dist", "tests", "helpers"]
+// }
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es6",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ],
-    "sourceMap": true
+    "lib": [ "es5", "es6", "dom" ],
+    "rootDir": "src",
+    "sourceMap": true,
+    "target": "ES5",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "declaration": true,
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": ["node_modules", "dist", "tests"]
 }
