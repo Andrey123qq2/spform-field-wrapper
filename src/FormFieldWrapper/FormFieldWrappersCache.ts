@@ -14,6 +14,7 @@ import { FormFieldWrapperSPFieldText } from "./WrappersByTypes/FormFieldWrapperS
 import { FormFieldWrapperSPFieldURL } from "./WrappersByTypes/FormFieldWrapperSPFieldURL";
 import { FormFieldWrapperSPFieldUser } from "./WrappersByTypes/FormFieldWrapperSPFieldUser";
 import { FormFieldWrapperSPFieldUserMulti } from "./WrappersByTypes/FormFieldWrapperSPFieldUserMulti";
+import { FormFieldWrapperSPFieldCurrency } from "./WrappersByTypes/FormFieldWrapperSPFieldCurrency";
 
 interface IFieldsWrappersCache {
     [key: string]: FormFieldWrapper
