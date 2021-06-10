@@ -1,6 +1,6 @@
 {
   "name": "spform-field-wrapper",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "Lib to work with SharePoint form fields",
   "main": "dist/index.js",
   "author": "Andrey Nesterov",
