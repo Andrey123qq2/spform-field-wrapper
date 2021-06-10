@@ -35,6 +35,7 @@ export class FormFieldWrappersCache {
         "SPFieldLookupMulti": (fieldTitle: string) => new FormFieldWrapperSPFieldLookupMulti(fieldTitle),
         "SPFieldFilteredLookupField": (fieldTitle: string) => new FormFieldWrapperSPFieldFilteredLookupField(fieldTitle),
         "SPFieldNote": (fieldTitle: string) => new FormFieldWrapperSPFieldNote(fieldTitle),
+        "SPFieldCurrency": (fieldTitle: string) => new FormFieldWrapperSPFieldCurrency(fieldTitle),
     };
     private static __fieldsToWrappersAndContextesCache__: IFieldsWrappersCache;
     private static get _fieldsToWrappersAndContextesCache(): IFieldsWrappersCache {
