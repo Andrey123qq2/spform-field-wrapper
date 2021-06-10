@@ -14,4 +14,8 @@ export class FormFieldWrapperSPFieldNumber extends FormFieldWrapper {
 	public set value(value) {
 		super.setValue(value);
 	}
+	
+	public toString(): string {
+		return this.value.replace(".", ",");
+	}
 }
