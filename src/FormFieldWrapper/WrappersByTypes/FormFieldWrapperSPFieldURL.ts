@@ -19,9 +19,13 @@ export class FormFieldWrapperSPFieldURL extends FormFieldWrapper {
 
 	public set value(value: SP.FieldUrlValue | string) {
 		let docSetUrlInputs = this.fieldElement.querySelectorAll("input[type=text]");
-		(<HTMLInputElement>docSetUrlInputs[0]).value = (<SP.FieldUrlValue>value).get_url();
-		(<HTMLInputElement>docSetUrlInputs[1]).value = (<SP.FieldUrlValue>value).get_description();
-
+		if ((typeof value) == "string") {
+			(<HTMLInputElement>docSetUrlInputs[0]).value = <string>value;
+			(<HTMLInputElement>docSetUrlInputs[1]).value = <string>value;
+		} else {
+			(<HTMLInputElement>docSetUrlInputs[0]).value = (<SP.FieldUrlValue>value).get_url();
+			(<HTMLInputElement>docSetUrlInputs[1]).value = (<SP.FieldUrlValue>value).get_description();
+		}
 	}
 
 	public toString(): string {
