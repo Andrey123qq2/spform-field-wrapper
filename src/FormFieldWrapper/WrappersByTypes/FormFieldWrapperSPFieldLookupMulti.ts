@@ -10,7 +10,7 @@ export class FormFieldWrapperSPFieldLookupMulti extends FormFieldWrapper {
 			return this.getValueDispForm().split(/;\s?/);
 		var selectedSource = this.fieldElement.querySelectorAll("select[id$=SelectResult] > option");
 		var selectValues = Array.prototype.slice.call(selectedSource)
-			.map((o) => o.innerText);
+			.map((o) => o.getAttribute("value") + ";#" + o.innerText);
 		return selectValues;
 	}
 
@@ -19,6 +19,7 @@ export class FormFieldWrapperSPFieldLookupMulti extends FormFieldWrapper {
 	}
 
 	public toString(): string {
-		return this.value.join(", ");
+		//TODO: get correct format with digits for DispForm.aspx
+		return this.value.join(";#");
 	}
 }
