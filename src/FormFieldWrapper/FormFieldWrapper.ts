@@ -6,8 +6,8 @@ export class FormFieldWrapper {
 	public fieldInternalName: string;
 	public fieldType: string;
 	public fieldElement: Element;
+	public required: boolean;
 	private _fieldContext: IFieldContext;
-	//private readonly _disableStyle = "opacity: 0.4; pointer-events: none;"
 
 	public get value(): any {
 		if (window.location.href.match(/DispForm\.aspx/i))

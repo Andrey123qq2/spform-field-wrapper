@@ -1,4 +1,4 @@
-export {FormWrapper} from './FormFieldWrapper/FormWrapper'
+export {FormFieldWrappersManager} from './FormFieldWrapper/FormFieldWrappersManager'
 export {FormFieldWrapper} from './FormFieldWrapper/FormFieldWrapper'
 export {FormFieldWrapperSPFieldBoolean} from './FormFieldWrapper/WrappersByTypes/FormFieldWrapperSPFieldBoolean'
 export {FormFieldWrapperSPFieldChoice} from './FormFieldWrapper/WrappersByTypes/FormFieldWrapperSPFieldChoice'

@@ -15,13 +15,16 @@ import { FormFieldWrapperSPFieldURL } from "./WrappersByTypes/FormFieldWrapperSP
 import { FormFieldWrapperSPFieldUser } from "./WrappersByTypes/FormFieldWrapperSPFieldUser";
 import { FormFieldWrapperSPFieldUserMulti } from "./WrappersByTypes/FormFieldWrapperSPFieldUserMulti";
 import { FormFieldWrapperSPFieldCurrency } from "./WrappersByTypes/FormFieldWrapperSPFieldCurrency";
+import { FormFieldWrapperSPFieldCalculated } from "./WrappersByTypes/FormFieldWrapperSPFieldCalculated";
+import { FormFieldWrapperCustomFieldData } from "./WrappersByTypes/FormFieldWrapperCustomFieldData";
 
 interface IFieldsWrappersCache {
     [key: string]: FormFieldWrapper
 }
 
-export class FormFieldWrappersCache {
-    private static readonly _defaultType = "SPFieldText";
+export class FormFieldWrappersManager {
+    private static instance: FormFieldWrappersManager;
+    private readonly _defaultType = "SPFieldText";
     private static readonly subClassesMap: Record<string, any> = {
         "SPFieldText": (fieldTitle: string) => new FormFieldWrapperSPFieldText(fieldTitle),
         "SPFieldChoice": (fieldTitle: string) => new FormFieldWrapperSPFieldChoice(fieldTitle),
@@ -37,29 +40,58 @@ export class FormFieldWrappersCache {
         "SPFieldFilteredLookupField": (fieldTitle: string) => new FormFieldWrapperSPFieldFilteredLookupField(fieldTitle),
         "SPFieldNote": (fieldTitle: string) => new FormFieldWrapperSPFieldNote(fieldTitle),
         "SPFieldCurrency": (fieldTitle: string) => new FormFieldWrapperSPFieldCurrency(fieldTitle),
+        "SPFieldCalculated": (fieldTitle: string) => new FormFieldWrapperSPFieldCalculated(fieldTitle),
+        "CustomFieldData": (fieldTitle: string) => new FormFieldWrapperCustomFieldData(fieldTitle),
     };
-    private static __fieldsToWrappersAndContextesCache__: IFieldsWrappersCache;
-    private static get _fieldsToWrappersAndContextesCache(): IFieldsWrappersCache {
+    private __fieldsToWrappersAndContextesCache__: IFieldsWrappersCache;
+    private get _fieldsToWrappersAndContextesCache(): IFieldsWrappersCache {
         if (!this.__fieldsToWrappersAndContextesCache__)
             this.initialize();
         return this.__fieldsToWrappersAndContextesCache__;
     }
+    private _allFieldsWrappersCache: Array<FormFieldWrapper>;
+    
+    public static factory(fieldContext: IFieldContext): FormFieldWrapper {
+        let subClassInstance = this.subClassesMap[fieldContext.FieldType](fieldContext.FieldName);
+        return subClassInstance;
+    }
 
-    public static getField(fieldTitle: string): FormFieldWrapper {
+    private constructor() { }
+
+    public static getInstance(): FormFieldWrappersManager {
+		if (!FormFieldWrappersManager.instance) {
+			FormFieldWrappersManager.instance = new FormFieldWrappersManager();
+		}
+		return FormFieldWrappersManager.instance;
+	}
+
+    public getField(fieldTitle: string): FormFieldWrapper {
         let fieldWrapper = this._fieldsToWrappersAndContextesCache[fieldTitle];
         return fieldWrapper;
     }
 
-    public static resetCache() {
+    private getAllFieldsWrappers(): Array<FormFieldWrapper> {
+        let fieldsWrappers: Array<FormFieldWrapper> = [];
+        Object.keys(this._fieldsToWrappersAndContextesCache)
+            .forEach(f => fieldsWrappers.push(this._fieldsToWrappersAndContextesCache[f]));
+        return fieldsWrappers;
+    }
+
+    public get allFieldsWrappers(): Array<FormFieldWrapper> {
+        return this._allFieldsWrappersCache;
+    }
+
+    public resetCache() {
         this.__fieldsToWrappersAndContextesCache__ = null;
         FieldsContextesCache.resetCache();
     }
 
-    private static initialize(): void {
+    private initialize(): void {
         this.__fieldsToWrappersAndContextesCache__ = this._getDataForCache();
+        this._allFieldsWrappersCache = this.getAllFieldsWrappers();
     }
 
-    private static _getDataForCache(): IFieldsWrappersCache {
+    private _getDataForCache(): IFieldsWrappersCache {
         let fieldsWrappersMap: IFieldsWrappersCache = {};
         let allContextes = FieldsContextesCache.getAllContextes();
 
@@ -67,7 +99,7 @@ export class FormFieldWrappersCache {
             let fieldWrapper;
             let fieldContext = allContextes[c]
             try {
-                fieldWrapper = FormFieldWrappersCache.factory(fieldContext);
+                fieldWrapper = FormFieldWrappersManager.factory(fieldContext);
             } catch (err) {
                 console.log("FormFieldWrapper Error: " + err);
                 return;
@@ -75,10 +107,5 @@ export class FormFieldWrappersCache {
             fieldsWrappersMap[fieldContext.FieldName] = fieldWrapper;
         })
         return fieldsWrappersMap;
-    }
-
-    public static factory(fieldContext: IFieldContext): FormFieldWrapper {
-        let subClassInstance = this.subClassesMap[fieldContext.FieldType](fieldContext.FieldName);
-        return subClassInstance;
     }
 }
