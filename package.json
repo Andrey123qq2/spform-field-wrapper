@@ -8,6 +8,10 @@
   "files": [
     "/dist"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Andrey123qq2/spform-field-wrapper.git"
+  },
   "scripts": {
     "build": "tsc --build",
     "clean": "tsc --build --clean",
