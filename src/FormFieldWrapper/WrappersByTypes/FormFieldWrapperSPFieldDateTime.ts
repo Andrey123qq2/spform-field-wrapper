@@ -28,8 +28,14 @@ export class FormFieldWrapperSPFieldDateTime extends FormFieldWrapper {
 		let dateStringFromHTML = this.getDateStringFromFieldInputs();
 		if (!dateStringFromHTML)
 			return "";
-		else
-			return new Date(dateStringFromHTML);
+		else {
+			let dateValue = new Date(dateStringFromHTML)
+			if (isNaN(dateValue.getTime())) {
+				return "";
+			} else {
+				return dateValue;
+			}
+		}
 	}
 
 	public set value(value) {
