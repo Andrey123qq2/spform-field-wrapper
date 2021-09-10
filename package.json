@@ -1,7 +1,7 @@
 {
   "name": "spform-field-wrapper",
-  "version": "0.2.0",
-  "description": "Lib to work with SharePoint form fields",
+  "version": "1.0.0",
+  "description": "Package to work with SharePoint classic form fields",
   "main": "dist/index.js",
   "author": "Andrey Nesterov",
   "types": "dist/index.d.ts",
@@ -12,6 +12,8 @@
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "test": "jest",
+    "prepare" : "npm run build",
+    "prepublishOnly": "npm test",
     "coverage": "nyc -r text -e .ts -x \"tests/*.test.ts\" npm run test",
     "clear_jest": "jest --clearCache"
   },
