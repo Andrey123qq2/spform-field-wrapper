@@ -1,12 +1,11 @@
-import { FormWrapper } from '../src/FormFieldWrapper/FormWrapper';
-import { FormFieldWrappersCache } from '../src/FormFieldWrapper/FormFieldWrappersCache';
+import { FormFieldWrappersManager } from '../src/FormFieldWrapper/FormFieldWrappersManager';
 const fs = require('fs');
 const path = require('path');
 jest.dontMock('fs');
 
 function getFormFieldValue(fieldName: string): any {
-  let formWrapper = FormWrapper.getInstance();
-  let formField = formWrapper.getField(fieldName);
+  let ffwWrapper = FormFieldWrappersManager.getInstance();
+  let formField = ffwWrapper.getField(fieldName);
   return formField.value;
 }
 
@@ -51,7 +50,8 @@ describe('EditForm - get fields values', () => {
 });
 describe('DisplayForm - get fields values', () => {
   beforeAll(() => {
-    FormFieldWrappersCache.resetCache();
+    let ffwWrapper = FormFieldWrappersManager.getInstance();
+    ffwWrapper.resetCache();
     const dispFormHtml = fs.readFileSync(path.resolve(__dirname, './static/SP2013_CustomList_DispForm.html'), 'utf8');
     document.body.innerHTML = dispFormHtml;
     global.window = Object.create(window);
@@ -74,7 +74,7 @@ describe('DisplayForm - get fields values', () => {
     expect(getFormFieldValue(fieldName)).toBe(expectedFieldValue);
   });
   test('MultiTextFieldBase Test (dispForm)', () => {
-    let expectedFieldValue = "test multistring1\ntest multistring2";  
+    let expectedFieldValue = "test multistring1";  
     let fieldName = "MultiText FieldBase";
     expect(getFormFieldValue(fieldName)).toBe(expectedFieldValue);
   });
