@@ -36,7 +36,7 @@ fieldWrapper.fieldType == "SPFieldDateTime"
 #### Class FormFieldWrappersManager
 | Method | Description |
 | --------- | ----------- |
-|`getInstance()`| gets instance of FormFieldWrappersManager class |
+|`getInstance()`| static method, gets instance of FormFieldWrappersManager class |
 |`getField()`| gets field wrapper form html SP form |
 |`allFieldsWrappers()`| gets all field wrapper form html SP form |
 |`resetCache()`| all field wrappers are cached, this method reinitialized this cache |
@@ -51,7 +51,8 @@ fieldWrapper.fieldType == "SPFieldDateTime"
 |`required`| field to dynamically set required flag for interactive checks |
 |`value`| property to set or get field value |
 
-Each fields types can have their own methods implementations depending on field type specific
+Each field type can have own methods implementations depending on field type.
+
 | Method | Description |
 | --------- | ----------- |
 |`getValue()`| same as value |
