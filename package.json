@@ -1,6 +1,6 @@
 {
   "name": "spform-field-wrapper",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "Package to work with SharePoint classic form fields",
   "main": "dist/index.js",
   "author": "Andrey Nesterov",
