@@ -17,7 +17,11 @@ export class FormFieldWrapperSPFieldChoice extends FormFieldWrapper {
 	}
 
 	public set value(value) {
-		super.setValue(value);
+		if (this.fieldElement.querySelector("table[id$=ChoiceRadioTable]") || !this.fieldElement.querySelector("table[id$=FillInTable]"))
+			super.setValue(value);
+		else
+			this._setValueOnDropDownPlusFillIn(value);
+			
 	}
 
 	public enable(): void {
@@ -28,6 +32,15 @@ export class FormFieldWrapperSPFieldChoice extends FormFieldWrapper {
 	public disable(): void {
 		super.disable("");
 		super.disableWithStyle();
+	}
+
+	private _setValueOnDropDownPlusFillIn(value): void {
+		let checkedRadioValue = Array.prototype.slice.call(this.fieldElement.querySelectorAll("input[type='radio']"))
+			.filter((i) => i.checked);
+		if (checkedRadioValue[0].value == "FillInButton")
+			(<HTMLInputElement>this.fieldElement.querySelector("input[type=text]")).value = value;
+		else
+			super.setValue(value);
 	}
 
 	private _getValueFromRadioButton(): string {
