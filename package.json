@@ -36,7 +36,6 @@
   },
   "dependencies": {
     "@types/sharepoint": "^2016.1.10",
-    "jasmine-node": "^3.0.0",
     "tsconfig-paths": "^3.11.0"
   }
 }
