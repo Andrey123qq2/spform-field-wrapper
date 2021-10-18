@@ -37,7 +37,10 @@ export class FormFieldWrapperSPFieldUserMulti extends FormFieldWrapper {
 	}
 
 	public toString(): string {
-		return this.value.map(u => u.get_lookupValue().replace(/^[^\\]+\\/, "")).join(", ");
+		if ((typeof this.value) == "string")
+			return this.value;
+		else
+			return this.value.map(u => u.get_lookupValue().replace(/^[^\\]+\\/, "")).join(", ");
 	}
 
 	public get value(): any {
