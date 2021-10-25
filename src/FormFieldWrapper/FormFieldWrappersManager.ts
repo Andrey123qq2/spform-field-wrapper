@@ -17,6 +17,7 @@ import { FormFieldWrapperSPFieldUserMulti } from "./WrappersByTypes/FormFieldWra
 import { FormFieldWrapperSPFieldCurrency } from "./WrappersByTypes/FormFieldWrapperSPFieldCurrency";
 import { FormFieldWrapperSPFieldCalculated } from "./WrappersByTypes/FormFieldWrapperSPFieldCalculated";
 import { FormFieldWrapperCustomFieldData } from "./WrappersByTypes/FormFieldWrapperCustomFieldData";
+import { FormFieldWrapperSPFieldAttachments } from "./WrappersByTypes/FormFieldWrapperSPFieldAttachments";
 
 interface IFieldsWrappersCache {
     [key: string]: FormFieldWrapper
@@ -41,6 +42,7 @@ export class FormFieldWrappersManager {
         "SPFieldNote": (fieldTitle: string) => new FormFieldWrapperSPFieldNote(fieldTitle),
         "SPFieldCurrency": (fieldTitle: string) => new FormFieldWrapperSPFieldCurrency(fieldTitle),
         "SPFieldCalculated": (fieldTitle: string) => new FormFieldWrapperSPFieldCalculated(fieldTitle),
+        "SPFieldAttachments": (fieldTitle: string) => new FormFieldWrapperSPFieldAttachments(fieldTitle),
         "CustomFieldData": (fieldTitle: string) => new FormFieldWrapperCustomFieldData(fieldTitle),
     };
     private __fieldsToWrappersAndContextesCache__: IFieldsWrappersCache;
