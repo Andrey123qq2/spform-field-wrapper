@@ -31,13 +31,14 @@ export class FieldsContextesCache {
 
     private static _getFieldsContextesMap(): IFieldsContextesMap {
         let fieldsContextesMap: IFieldsContextesMap = {};
-        let fieldsNodes = (!window.location.href.match(/DispForm\.aspx/i))
-            ? document.querySelectorAll("[dir=none]")
-            : document.querySelectorAll("table.ms-formtable td.ms-formbody, span.hillbillyForm");
-        Array.prototype.slice.call(fieldsNodes).forEach(n => {
-            let node = (!window.location.href.match(/DispForm\.aspx/i)) ? n : n.lastChild;
-            if (!node)
-                return;
+        let fieldsNodes = (window.location.href.match(/DispForm\.aspx/i)) ? 
+            this._getFieldsNodesFromDisplayForm() :
+            this._getFieldsNodes();
+        let fieldsNodesAttachments = this._getFieldsNodesAttachments();
+        let fieldsNodesAll = fieldsNodes.concat(fieldsNodesAttachments);
+        fieldsNodesAll
+        .filter(n => !!n)
+        .forEach(node => {
             let fieldContext: IFieldContext;
             try {
                 fieldContext = this._getFieldContextFromNode(node);
@@ -48,6 +49,26 @@ export class FieldsContextesCache {
             fieldsContextesMap[fieldContext.FieldName] = fieldContext;
         });
         return fieldsContextesMap;
+    }
+
+    private static _getFieldsNodes(): Array<Element> {
+        let fieldsNodes = (!window.location.href.match(/DispForm\.aspx/i))
+            ? document.querySelectorAll("[dir=none]")
+            : document.querySelectorAll("table.ms-formtable td.ms-formbody, span.hillbillyForm");
+        let fieldsNodesArray = Array.prototype.slice.call(fieldsNodes);
+        return fieldsNodesArray;
+    }
+
+    private static _getFieldsNodesFromDisplayForm(): Array<Node> {
+        let fieldsNodes = document.querySelectorAll("table.ms-formtable td.ms-formbody, span.hillbillyForm");
+        let fieldsNodesArray = Array.prototype.slice.call(fieldsNodes).map(n => n.lastChild);
+        return fieldsNodesArray;
+    }
+
+    private static _getFieldsNodesAttachments(): Array<Element> {
+        let fieldsNodes = document.querySelectorAll("table#idAttachmentsTable");
+        let fieldsNodesArray = Array.prototype.slice.call(fieldsNodes);
+        return fieldsNodesArray;
     }
 
     private static _getFieldContextFromNode(fieldNode: any): IFieldContext {
