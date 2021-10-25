@@ -106,10 +106,12 @@ export class FormFieldWrapperSPFieldChoice extends FormFieldWrapper {
 		return fieldValue;
 	}
 	public addEventListener(type: string, callback: (ev: Event) => any): void {
-		super.addEventListener(type, callback);
-		if (this.fieldElement.querySelector("table[id$=FillInTable]")) {
+		if (this.choiceType == SPFieldChoiceChoiceType.FillInTable) {
+			(<HTMLElement>this.fieldElement).addEventListener(type, callback);
 			this.fieldElement.querySelector("span.ms-RadioText").addEventListener("click", callback);
 			this.fieldElement.querySelector("input[type=text]").addEventListener("click", callback);
+		} else {
+			super.addEventListener(type, callback);
 		}
 	}
 }
