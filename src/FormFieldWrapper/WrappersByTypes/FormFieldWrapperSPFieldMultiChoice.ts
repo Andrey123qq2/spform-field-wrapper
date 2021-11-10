@@ -17,7 +17,9 @@ export class FormFieldWrapperSPFieldMultiChoice extends FormFieldWrapper {
 	}
 
 	public set value(value) {
-		super.setValue(value);
+		let inputOptions = this.fieldElement.querySelectorAll("input[type='checkbox']");
+		Array.prototype.slice.call(inputOptions)
+			.forEach(o => o.checked = Array.contains(value, o.nextElementSibling.textContent));
 	}
 
 	public toString(): string {
