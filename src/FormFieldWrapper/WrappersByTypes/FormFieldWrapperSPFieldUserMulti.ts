@@ -15,6 +15,18 @@ export class FormFieldWrapperSPFieldUserMulti extends FormFieldWrapper {
 			this.__peoplePicker__ = this._getPeoplePicker();
 	}
 
+	public disable(): void {
+		this.fieldElement
+			.querySelector("input.sp-peoplepicker-editorInput")
+			.setAttribute("disabled", "true");
+	}
+
+	public enable(): void {
+		this.fieldElement
+			.querySelector("input.sp-peoplepicker-editorInput")
+			.removeAttribute("disabled");
+	}
+	
 	public addEventListener(type: string, callback: (ev: Event) => any): void {
 		//wait for copying fake pickers with name ClientPeoplePicker in calendar forms
 		let timeout = (this.fieldName.match("ClientPeoplePicker")) ? 2500 : 0;
