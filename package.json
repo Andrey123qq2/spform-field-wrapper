@@ -1,6 +1,6 @@
 {
   "name": "spform-field-wrapper",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "description": "Package to work with SharePoint classic form fields",
   "main": "dist/index.js",
   "author": "Andrey Nesterov",
@@ -22,7 +22,7 @@
     "clear_jest": "jest --clearCache"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/jest-dom": "^5.15.0",
     "@types/jest": "^26.0.24",
     "@types/node": "^15.14.9",
     "babel-register": "^6.26.0",
