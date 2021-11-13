@@ -7,6 +7,7 @@ export class FormFieldWrapper {
 	public fieldType: string;
 	public fieldElement: Element;
 	public required: boolean;
+	public isDisabled: boolean;
 	private _fieldContext: IFieldContext;
 
 	public get value(): any {
@@ -82,26 +83,30 @@ export class FormFieldWrapper {
 		let fieldElement = selector ? this.fieldElement.querySelector(selector) : this.fieldElement;
 		fieldElement.removeAttribute("disabled");
 		fieldElement.classList.remove("disabled");
+		this.isDisabled = false;
 	}
 
 	public disable(selector = "[title]"): void {
 		let fieldElement = selector ? this.fieldElement.querySelector(selector) : this.fieldElement;
 		fieldElement.setAttribute("disabled", "true");
 		fieldElement.classList.add("disabled");
-	}
-
-	public disableWithStyle(): void {
-		(<HTMLElement>this.fieldElement).style.setProperty("opacity", "0.4");
-		(<HTMLElement>this.fieldElement).style.setProperty("pointer-events", "none");
-		this.fieldElement.classList.add("disabled");
+		this.isDisabled = true;
 	}
 
 	public enableWithStyle(): void {
 		(<HTMLElement>this.fieldElement).style.setProperty("opacity", "");
 		(<HTMLElement>this.fieldElement).style.setProperty("pointer-events",  "");
 		this.fieldElement.classList.remove("disabled");
+		this.isDisabled = false;
 	}
 
+	public disableWithStyle(): void {
+		(<HTMLElement>this.fieldElement).style.setProperty("opacity", "0.4");
+		(<HTMLElement>this.fieldElement).style.setProperty("pointer-events", "none");
+		this.fieldElement.classList.add("disabled");
+		this.isDisabled = true;
+	}
+	
 	public addEventListener(type: string, callback: (ev: Event) => any): void {
 		(<HTMLElement>this.fieldElement).firstElementChild.addEventListener(type, callback);
 	}
