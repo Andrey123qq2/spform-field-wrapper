@@ -44,6 +44,7 @@ export class FormFieldWrappersManager {
         "SPFieldCalculated": (fieldTitle: string) => new FormFieldWrapperSPFieldCalculated(fieldTitle),
         "SPFieldAttachments": (fieldTitle: string) => new FormFieldWrapperSPFieldAttachments(fieldTitle),
         "CustomFieldData": (fieldTitle: string) => new FormFieldWrapperCustomFieldData(fieldTitle),
+        "SPFieldAllDayEvent": (fieldTitle: string) => new FormFieldWrapperSPFieldBoolean(fieldTitle),
     };
     private __fieldsToWrappersAndContextesCache__: IFieldsWrappersCache;
     private get _fieldsToWrappersAndContextesCache(): IFieldsWrappersCache {
