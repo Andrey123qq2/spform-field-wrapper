@@ -52,16 +52,14 @@ export class FieldsContextesCache {
     }
 
     private static _getFieldsNodes(): Array<Element> {
-        let fieldsNodes = (!window.location.href.match(/DispForm\.aspx/i))
-            ? document.querySelectorAll("[dir=none]")
-            : document.querySelectorAll("table.ms-formtable td.ms-formbody, span.hillbillyForm");
+        let fieldsNodes = document.querySelectorAll("[dir=none]");
         let fieldsNodesArray = Array.prototype.slice.call(fieldsNodes);
         return fieldsNodesArray;
     }
 
     private static _getFieldsNodesFromDisplayForm(): Array<Node> {
-        let fieldsNodes = document.querySelectorAll("table.ms-formtable td.ms-formbody, span.hillbillyForm");
-        let fieldsNodesArray = Array.prototype.slice.call(fieldsNodes).map(n => n.lastChild);
+        let fieldsNodes = document.querySelectorAll("table.ms-formtable td.ms-formbody, span.customFormField, span.hillbillyForm");
+        let fieldsNodesArray = Array.prototype.slice.call(fieldsNodes).map(n => n.lastChild).filter(n => n);
         return fieldsNodesArray;
     }
 
